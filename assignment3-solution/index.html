@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en" ng-app="NarrowItDownApp">
+  <head>
+    <title>Narrow Down Your Menu Choice</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/styles.css">
+    <script src="angular.min.js"></script>
+    <script src="app.js"></script>
+  </head>
+<body>
+   <div class="container" ng-controller="NarrowItDownController as searchbox">
+    <h1>Narrow Down Your Chinese Menu Choice</h1>
+
+    <div class="row">
+      <div class="form-group col-sm-2">
+        <input type="text" placeholder="search term" class="form-control" ng-model="searchbox.searchTerm">
+      </div>
+      <div class="form-group narrow-button col-sm-3">
+        <button class="btn btn-primary" ng-click="searchbox.searchButtonClickHandler()">Narrow It Down For Me!</button>
+      </div>
+      <div class="loader col-sm-1" style="display: {{ searchbox.loading ? 'inline' : 'none' }}"></div>
+    </div>
+
+    <div style="color: red; float: left" class="col-sm-12">{{ searchbox.message }}</div>
+
+    <!-- found-items should be implemented as a component -->
+    <found-items class="col-sm-12" found-items="searchbox.found" on-remove="searchbox.removeItem(index)"></found-items>
+
+  </div>
+
+</body>
+</html>
